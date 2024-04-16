@@ -1,0 +1,56 @@
+/* General Styles */
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+/* Header Styles */
+.header {
+  background-color: #f2f8fd;
+  width: 100vw;
+  height: 33%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.h1 {
+  margin-left: 5rem;
+  font-size: 2.5rem;
+}
+
+.button {
+  background-color: #3e6de7;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  margin-right: 5rem;
+  height: fit-content;
+  padding: 1rem;
+  font-size: 2.5rem;
+}
+
+/* Main Styles */
+.main {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  height: 67%;
+}
+
+.quote {
+  margin-top: 7rem;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+}
+
+.author {
+  color: gray;
+  font-size: 2.5rem;
+}
