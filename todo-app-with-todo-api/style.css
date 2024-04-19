@@ -116,11 +116,19 @@
   /* position: relative; */
 }
 
+.all-chosen {
+  position: relative;
+}
+
 .open {
   background-color: #f5b000;
   /* position: relative; */
   /* top: 10px; */
   /* z-index: -1; */
+}
+
+.open-chosen {
+  position: relative;
 }
 
 .done {
@@ -130,9 +138,14 @@
   /* z-index: -1; */
 }
 
+.done-chosen {
+  position: relative;
+}
+
 .add-todo-form {
   /* margin-top: .5rem;
   margin-bottom: .5rem; */
+  position: relative;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -204,8 +217,11 @@ input[type="checkbox"]:checked::before {
 }
 
 .submit-btn {
-  height: min-content;
-  /* min-width: auto; */
+  position: relative;
+  height: 60px;
+  width: 60px;
+
+  right: 2px;
   background-color: transparent;
   border: 2px solid white;
   box-shadow: 5px 5px transparent;
@@ -217,4 +233,78 @@ input[type="checkbox"]:checked::before {
   border: 2px solid white;
   box-shadow: 10px 10px #f5c400;
   color: currentColor;
+}
+
+/* Loading spinner styles */
+
+.cssload-load {
+  position: absolute;
+  top: 2px;
+
+  width: 60px;
+  height: 60px;
+}
+
+.cssload-block {
+  position: relative;
+  height: 13px;
+  width: 13px;
+  display: inline-block;
+  background: rgb(255, 247, 214);
+  transition: all 0.92s;
+  animation: cssload-rot 5.75s linear infinite;
+}
+.cssload-block:nth-child(1) {
+  animation-delay: 3.45s;
+}
+.cssload-block:nth-child(2) {
+  animation-delay: 1.73s;
+  animation: cssload-rot 13.8s linear infinite;
+}
+.cssload-block:nth-child(3) {
+  animation-delay: 2.3s;
+}
+.cssload-block:nth-child(4) {
+  animation-delay: 0.23s;
+}
+.cssload-block:nth-child(5) {
+  animation-delay: 4.6s;
+}
+.cssload-block:nth-child(6) {
+  animation-delay: 2.3s;
+  animation: cssload-rot 8.05s linear infinite;
+}
+.cssload-block:nth-child(7) {
+  animation-delay: 0.46s;
+}
+.cssload-block:nth-child(8) {
+  animation-delay: 1.73s;
+  animation: cssload-rot 6.9s linear infinite;
+}
+.cssload-block:nth-child(9) {
+  animation-delay: 28.75s;
+  animation: cssload-rot 9.2s linear infinite;
+}
+
+@keyframes cssload-rot {
+  0% {
+    transform: none;
+  }
+  20% {
+    transform: rotateZ(-90deg) rotateY(180deg);
+  }
+  40% {
+    background: rgb(210, 105, 30);
+    transform: none;
+  }
+  60% {
+    background: rgb(255, 255, 255);
+  }
+  80% {
+    background: rgba(255, 247, 214, 07);
+  }
+  90% {
+    transform: none;
+    background: rgb(245, 163, 0);
+  }
 }

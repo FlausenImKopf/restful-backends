@@ -10,26 +10,21 @@ const open = document.getElementById("open");
 const done = document.getElementById("done");
 const all = document.getElementById("all");
 
+// radio button labels for styling
+const openLabel = document.getElementById("open-label");
+const doneLabel = document.getElementById("done-label");
+const allLabel = document.getElementById("all-label");
+
+//block continuous load spinner
+const loadContainer = document.getElementById("cssload-load");
+const loadBlocks = document.querySelectorAll("#cssload-block");
+const submitBtn = document.getElementById("submit-btn");
+
 // state
 let state = {
   todos: [],
   filter: "all",
 };
-
-//initialize backend
-// fetch("http://localhost:4730/todos")
-//   .then((response) => {
-//     // continuations
-//     console.log("response", response);
-//     return response.json();
-//   })
-//   .then((data) => {
-//     // continuations
-//     console.log("data", data);
-
-//     state.todos = data;
-//     render();
-//   });
 
 function refresh() {
   // async
@@ -51,16 +46,24 @@ function refresh() {
 
 //take user input and add it to the state, if it's not a duplicate
 function addToState() {
+  //start load blocks
+  loadContainer.classList.add("cssload-load");
+  loadBlocks.forEach((block) => {
+    block.classList.add("cssload-block");
+  });
+  submitBtn.style.visibility = "hidden";
+
   let description = textInput.value.trim();
   console.log(description);
-  // if (
-  //   state.todos.some((todo) => {
-  //     return todo.description.toLowerCase() == description.toLowerCase();
-  //   })
-  // ) {
-  //   alert("Todo already exists");
-  //   return;
-  // }
+  if (
+    state.todos.some((todo) => {
+      return todo.description.toLowerCase() == description.toLowerCase();
+    })
+  ) {
+    alert("Todo already exists");
+    textInput.value = "";
+    return;
+  }
 
   const newTodo = {
     description: description,
@@ -91,7 +94,7 @@ function addToState() {
 }
 
 //remove todos from api and state
-async function removeCompletedTodos() {
+function removeCompletedTodos() {
   state.todos.forEach((todo) => {
     if (todo.done) {
       let delTodo = `http://localhost:4730/todos/${todo.id}`;
@@ -100,14 +103,24 @@ async function removeCompletedTodos() {
         method: "DELETE",
       })
         .then((res) => res.json())
-        .then(() => {});
+        .then(() => {
+          refresh();
+        });
     }
   });
-  refresh();
-  render();
 }
 
 function render() {
+  //fake some loading time then disable load blocks and make add button visible again
+  setTimeout(function () {
+    loadContainer.classList.remove("cssload-load");
+    loadBlocks.forEach((block) => {
+      block.classList.remove("cssload-block");
+    });
+    // submitBtn.textContent = "add";
+    submitBtn.style.visibility = "visible";
+  }, 10000);
+
   ul.innerHTML = "";
 
   const todoListCls = ["todo-list-all", "todo-list-open", "todo-list-done"];
@@ -119,6 +132,10 @@ function render() {
     div.classList.add("todo-list-open");
     addTodoForm.classList.remove("add-todo-form-done");
     addTodoForm.classList.add("add-todo-form");
+    doneLabel.classList.remove("done-chosen");
+    allLabel.classList.remove("all-chosen");
+    openLabel.classList.add("open-chosen");
+    console.log(open);
     filterFunction = (todo) => !todo.done;
   } else if (state.filter == "done") {
     done.setAttribute("checked", "");
@@ -126,6 +143,9 @@ function render() {
     div.classList.add("todo-list-done");
     addTodoForm.classList.remove("add-todo-form");
     addTodoForm.classList.add("add-todo-form-done");
+    allLabel.classList.remove("all-chosen");
+    openLabel.classList.remove("open-chosen");
+    doneLabel.classList.add("done-chosen");
     filterFunction = (todo) => todo.done;
   } else {
     all.setAttribute("checked", "");
@@ -133,6 +153,9 @@ function render() {
     div.classList.remove(...todoListCls);
     div.classList.add("todo-list-all");
     addTodoForm.classList.remove("add-todo-form-done");
+    doneLabel.classList.remove("done-chosen");
+    openLabel.classList.remove("open-chosen");
+    allLabel.classList.add("all-chosen");
     addTodoForm.classList.add("add-todo-form");
   }
 
@@ -147,7 +170,7 @@ function render() {
 
       fetch(`http://localhost:4730/todos/${todo.id}`, {
         method: "PATCH",
-        body: JSON.stringify({ done: true }),
+        body: JSON.stringify({ done: todo.done }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -205,33 +228,6 @@ rmbtn.addEventListener("click", () => {
 });
 
 document.addEventListener("change", () => {
-  // function setFilter() {
-  //   const filterState = {
-  //     filter: state.filter,
-  //   };
-
-  //   fetch("http://localhost:4730/todos", {
-  //     method: "POST",
-  //     body: JSON.stringify(filterState),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((response) => {
-  //       // continuations
-  //       console.log("filter-response", response);
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       // continuations
-  //       console.log("filterData", data);
-
-  //       //   state.todos = data;
-  //       //   render();
-  //       refresh();
-  //     });
-  // }
-
   if (open.checked) {
     state.filter = "open";
   } else if (done.checked) {

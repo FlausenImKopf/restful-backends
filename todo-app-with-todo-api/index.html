@@ -14,13 +14,13 @@
     </header>
     <main class="main">
         <form id="show-todos" class="show-todos">
-            <label class="radio-btn all">
+            <label class="radio-btn all" id="all-label">
                 <input type="radio" name="filter" value="all" id="all" checked>all
             </label>
-            <label class="radio-btn open">
+            <label class="radio-btn open" id="open-label">
                 <input type="radio" name="filter" value="open" id="open">open
             </label>
-            <label class="radio-btn done">
+            <label class="radio-btn done" id="done-label">
                 <input type="radio" name="filter" value="done" id="done">done
             </label>
         </form>
@@ -37,10 +37,26 @@
             </ul>
             <form id="add-todo-form" class="add-todo-form">
                 <input class="text-input" type="text" id="text-input" placeholder="Add todos here">
-                <button class="submit-btn" type="submit">add</button>
+                <div>
+                    <button id="submit-btn" class="submit-btn" type="submit">add</button>
+                    <div id="cssload-load">
+                        <div class="cssload-blockcont">
+                            <div id="cssload-block"></div>
+                            <div id="cssload-block"></div>
+                            <div id="cssload-block"></div>
+
+                            <div id="cssload-block"></div>
+                            <div id="cssload-block"></div>
+                            <div id="cssload-block"></div>
+
+                            <div id="cssload-block"></div>
+                            <div id="cssload-block"></div>
+                            <div id="cssload-block"></div>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
-
         <button class="remove-btn" id="remove-btn">remove done todos</button>
     </main>
     <script src="script.js"></script>
