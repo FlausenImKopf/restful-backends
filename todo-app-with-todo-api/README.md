@@ -2,8 +2,6 @@
 
 Implement a basic Todo App and safe data to and fetch from the todos api.
 
-# Todo App with Todo API
-
 - [ ] Create a folder (and repository) for a Todo App that will use the Todo API
 - [ ] Use the Todo API with your new Todo App
   - [ ] Load all todos from the Todo API
