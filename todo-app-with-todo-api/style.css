@@ -1,0 +1,220 @@
+/* sometype-mono-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Sometype Mono";
+  font-style: normal;
+  font-weight: 700;
+  src: url("./sometype-mono-v1-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* General Styling */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: Sometype Mono;
+}
+/* Background Image styles and grid-layout */
+.body {
+  color: white;
+  background-image: linear-gradient(
+      rgba(255, 247, 214, 0.7),
+      rgba(255, 247, 214, 0.7)
+    ),
+    url(./emma-vyvey-kOZ7kMaV7cE-unsplash.jpg);
+  background-size: cover;
+  background-color: #fff7d6;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+  grid-template-rows: 10rem 30rem;
+  justify-content: center;
+  row-gap: 3rem;
+}
+
+.header {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-top: 1rem;
+  color: white;
+  background-color: #f5c400;
+  border: 2px solid white;
+  box-shadow: 10px 10px #f5c400;
+  display: flex;
+  justify-content: center;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.main {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: 2rem 23rem 3rem;
+  row-gap: 3rem;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-list-area {
+  list-style-type: none;
+  padding-right: 2rem;
+}
+
+.todo-list-all {
+  list-style-type: none;
+  padding-top: 1rem;
+  background-color: #f5c400;
+  border: 2px solid white;
+  /* box-shadow: 10px 10px #f5b000; */
+  box-shadow: 10px 10px 0px 0px #f5b000, 12px 12px 0px 0px white,
+    22px 22px 0px 0px #f5a400, 24px 24px 0px 0px white;
+}
+
+.todo-list-open {
+  list-style-type: none;
+  padding-top: 1rem;
+  background-color: #f5b000;
+  border: 2px solid white;
+  /* box-shadow: 10px 10px #f5a400; */
+  box-shadow: 10px 10px 0px 0px #f5a000, 12px 12px 0px 0px white,
+    22px 22px 0px 0px #f5c400, 24px 24px 0px 0px white;
+}
+
+.todo-list-done {
+  list-style-type: none;
+  padding-top: 1rem;
+  background-color: #f5a400;
+  border: 2px solid white;
+  /* box-shadow: 10px 10px #f5c400; */
+  box-shadow: 10px 10px 0px 0px #f5c400, 12px 12px 0px 0px white,
+    22px 22px 0px 0px #f5b000, 24px 24px 0px 0px white;
+}
+
+.show-todos {
+  display: flex;
+  justify-content: flex-end;
+  color: currentColor;
+}
+
+.radio-btn {
+  width: 4rem;
+  height: 6rem;
+  border: 2px solid white;
+  margin-right: 1rem;
+}
+
+.all {
+  background-color: #f5c400;
+  /* position: relative; */
+}
+
+.open {
+  background-color: #f5b000;
+  /* position: relative; */
+  /* top: 10px; */
+  /* z-index: -1; */
+}
+
+.done {
+  background-color: #f5a400;
+  /* position: relative; */
+  /* top: 20px; */
+  /* z-index: -1; */
+}
+
+.add-todo-form {
+  /* margin-top: .5rem;
+  margin-bottom: .5rem; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.add-todo-form-done {
+  display: none;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.each-todo {
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.1;
+  display: grid;
+  grid-template-columns: 1em auto;
+  gap: 0.5em;
+  margin-bottom: 1em;
+}
+
+input[type="checkbox"] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  appearance: none;
+  /* For iOS < 15 to remove gradient background */
+  background-color: #fff;
+  /* Not removed via appearance */
+  margin: 0;
+  font: inherit;
+  width: 1.2em;
+  height: 1.2em;
+  border: 0.15em solid currentColor;
+  background-color: transparent;
+  border-color: white;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 1.4rem;
+  height: 1.4rem;
+  clip-path: polygon(28% 38%, 41% 53%, 75% 24%, 86% 38%, 40% 78%, 15% 50%);
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  background-color: currentColor;
+  color: white;
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+.text-input {
+  height: min-content;
+  /* min-width: 5rem; */
+  background-color: transparent;
+  border: transparent;
+  border-bottom: 2px solid white;
+  color: white;
+}
+
+::placeholder {
+  color: #fff7d6;
+}
+
+.submit-btn {
+  height: min-content;
+  /* min-width: auto; */
+  background-color: transparent;
+  border: 2px solid white;
+  box-shadow: 5px 5px transparent;
+  color: currentColor;
+}
+
+.remove-btn {
+  background-color: #f5c400;
+  border: 2px solid white;
+  box-shadow: 10px 10px #f5c400;
+  color: currentColor;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Today's Tasks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="body">
+    <header class="header">
+        <h1 class="h1">Today's Tasks</h1>
+    </header>
+    <main class="main">
+        <form id="show-todos" class="show-todos">
+            <label class="radio-btn all">
+                <input type="radio" name="filter" value="all" id="all" checked>all
+            </label>
+            <label class="radio-btn open">
+                <input type="radio" name="filter" value="open" id="open">open
+            </label>
+            <label class="radio-btn done">
+                <input type="radio" name="filter" value="done" id="done">done
+            </label>
+        </form>
+        <div class="todo-list todo-list-all">
+            <ul class="todo-list-area">
+                <li>
+                    <form>
+                        <label class="each-todo">
+                            <input class="checkbox" type="checkbox" name="description">
+                            <span>create your first todo</span>
+                        </label>
+                    </form>
+                </li>
+            </ul>
+            <form id="add-todo-form" class="add-todo-form">
+                <input class="text-input" type="text" id="text-input" placeholder="Add todos here">
+                <button class="submit-btn" type="submit">add</button>
+            </form>
+        </div>
+
+        <button class="remove-btn" id="remove-btn">remove done todos</button>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
