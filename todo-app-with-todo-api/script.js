@@ -27,18 +27,11 @@ let state = {
 };
 
 function refresh() {
-  // async
-  // GET Request
   fetch("http://localhost:4730/todos")
     .then((response) => {
-      // continuations
-      console.log("response", response);
       return response.json();
     })
     .then((data) => {
-      // continuations
-      console.log("data", data);
-
       state.todos = data;
       render();
     });
@@ -53,8 +46,7 @@ function addToState() {
   });
   submitBtn.style.visibility = "hidden";
 
-  let description = textInput.value.trim();
-  console.log(description);
+  const description = textInput.value.trim();
   if (
     state.todos.some((todo) => {
       return todo.description.toLowerCase() == description.toLowerCase();
@@ -78,16 +70,9 @@ function addToState() {
     },
   })
     .then((response) => {
-      // continuations
-      console.log("response", response);
       return response.json();
     })
     .then((data) => {
-      // continuations
-      console.log("data", data);
-
-      //   state.todos = data;
-      //   render();
       refresh();
       textInput.value = "";
     });
@@ -97,9 +82,7 @@ function addToState() {
 function removeCompletedTodos() {
   state.todos.forEach((todo) => {
     if (todo.done) {
-      let delTodo = `http://localhost:4730/todos/${todo.id}`;
-      console.log(delTodo);
-      fetch(delTodo, {
+      fetch(`http://localhost:4730/todos/${todo.id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -111,7 +94,7 @@ function removeCompletedTodos() {
 }
 
 function render() {
-  //fake some loading time then disable load blocks and make add button visible again
+  //fake some loading time then disable load blocks and make add-button visible again
   setTimeout(function () {
     loadContainer.classList.remove("cssload-load");
     loadBlocks.forEach((block) => {
@@ -123,9 +106,9 @@ function render() {
 
   ul.innerHTML = "";
 
+  //styling changes depending on filter state
   const todoListCls = ["todo-list-all", "todo-list-open", "todo-list-done"];
 
-  let filterFunction;
   if (state.filter == "open") {
     open.setAttribute("checked", "");
     div.classList.remove(...todoListCls);
@@ -135,8 +118,6 @@ function render() {
     doneLabel.classList.remove("done-chosen");
     allLabel.classList.remove("all-chosen");
     openLabel.classList.add("open-chosen");
-    console.log(open);
-    filterFunction = (todo) => !todo.done;
   } else if (state.filter == "done") {
     done.setAttribute("checked", "");
     div.classList.remove(...todoListCls);
@@ -146,10 +127,8 @@ function render() {
     allLabel.classList.remove("all-chosen");
     openLabel.classList.remove("open-chosen");
     doneLabel.classList.add("done-chosen");
-    filterFunction = (todo) => todo.done;
   } else {
     all.setAttribute("checked", "");
-    filterFunction = () => true;
     div.classList.remove(...todoListCls);
     div.classList.add("todo-list-all");
     addTodoForm.classList.remove("add-todo-form-done");
@@ -158,6 +137,13 @@ function render() {
     allLabel.classList.add("all-chosen");
     addTodoForm.classList.add("add-todo-form");
   }
+
+  const filterFunction =
+    state.filter == "open"
+      ? (todo) => !todo.done
+      : state.filter == "done"
+      ? (todo) => todo.done
+      : () => true;
 
   state.todos?.filter(filterFunction).forEach((todo) => {
     const input = document.createElement("input");
@@ -176,15 +162,10 @@ function render() {
         },
       })
         .then((response) => {
-          // continuations
-          console.log("patch-response", response);
           return response.json();
         })
         .then((data) => {
-          // continuations
-          console.log("data", data);
           data.done = todo.done;
-          //   render();
           refresh();
         });
     });
@@ -228,13 +209,11 @@ rmbtn.addEventListener("click", () => {
 });
 
 document.addEventListener("change", () => {
-  if (open.checked) {
-    state.filter = "open";
-  } else if (done.checked) {
-    state.filter = "done";
-  } else {
-    state.filter = "all";
-  }
+  open.checked
+    ? (state.filter = "open")
+    : done.checked
+    ? (state.filter = "done")
+    : (state.filter = "all");
 
   render();
 });
