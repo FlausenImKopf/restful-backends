@@ -75,7 +75,8 @@
   border: 2px solid white;
   /* box-shadow: 10px 10px #f5b000; */
   box-shadow: 10px 10px 0px 0px #f5b000, 12px 12px 0px 0px white,
-    22px 22px 0px 0px #f5a400, 24px 24px 0px 0px white;
+    22px 22px 0px 0px #f5a400, 24px 24px 0px 0px white,
+    34px 34px 0px 0px rgba(245, 151, 149, 0.4);
 }
 
 .todo-list-open {
@@ -85,7 +86,8 @@
   border: 2px solid white;
   /* box-shadow: 10px 10px #f5a400; */
   box-shadow: 10px 10px 0px 0px #f5a000, 12px 12px 0px 0px white,
-    22px 22px 0px 0px #f5c400, 24px 24px 0px 0px white;
+    22px 22px 0px 0px #f5c400, 24px 24px 0px 0px white,
+    34px 34px 0px 0px rgba(245, 151, 149, 0.4);
 }
 
 .todo-list-done {
@@ -95,7 +97,19 @@
   border: 2px solid white;
   /* box-shadow: 10px 10px #f5c400; */
   box-shadow: 10px 10px 0px 0px #f5c400, 12px 12px 0px 0px white,
-    22px 22px 0px 0px #f5b000, 24px 24px 0px 0px white;
+    22px 22px 0px 0px #f5b000, 24px 24px 0px 0px white,
+    34px 34px 0px 0px rgba(245, 151, 149, 0.4);
+}
+
+.todo-list-archived {
+  list-style-type: none;
+  padding-top: 1rem;
+  background-color: #f59795;
+  border: 2px solid white;
+  /* box-shadow: 10px 10px #f5c400; */
+  box-shadow: 10px 10px 0px 0px #f5c400, 12px 12px 0px 0px white,
+    22px 22px 0px 0px #f5b000, 24px 24px 0px 0px white,
+    34px 34px 0px 0px #f5a400, 36px 36px 0px 0px white;
 }
 
 .show-todos {
@@ -112,16 +126,17 @@
 }
 
 .all {
-  background-color: #f5c400;
+  background-color: rgba(245, 196, 0, 0.7);
   /* position: relative; */
 }
 
 .all-chosen {
   position: relative;
+  background-color: #f5c400;
 }
 
 .open {
-  background-color: #f5b000;
+  background-color: rgba(245, 176, 0, 0.7);
   /* position: relative; */
   /* top: 10px; */
   /* z-index: -1; */
@@ -129,10 +144,11 @@
 
 .open-chosen {
   position: relative;
+  background-color: #f5b000;
 }
 
 .done {
-  background-color: #f5a400;
+  background-color: rgba(245, 164, 0, 0.4);
   /* position: relative; */
   /* top: 20px; */
   /* z-index: -1; */
@@ -140,6 +156,16 @@
 
 .done-chosen {
   position: relative;
+  background-color: #f5a400;
+}
+
+.archived {
+  background-color: rgba(245, 151, 149, 0.4);
+}
+
+.archived-chosen {
+  position: relative;
+  background-color: #f59795;
 }
 
 .add-todo-form {
@@ -203,6 +229,7 @@ input[type="checkbox"]:checked::before {
   transform: scale(1);
 }
 
+/* Buttons and Input Text Field */
 .text-input {
   height: min-content;
   /* min-width: 5rem; */
@@ -229,9 +256,18 @@ input[type="checkbox"]:checked::before {
 }
 
 .remove-btn {
-  background-color: #f5c400;
+  height: 3rem;
+  background-color: #f5a400;
   border: 2px solid white;
-  box-shadow: 10px 10px #f5c400;
+  box-shadow: 10px 10px rgba(245, 164, 0, 0.4);
+  color: currentColor;
+}
+
+.archive-btn {
+  height: 3rem;
+  background-color: #f59795;
+  border: 2px solid white;
+  box-shadow: 10px 10px rgba(245, 151, 149, 0.4);
   color: currentColor;
 }
 
@@ -240,7 +276,6 @@ input[type="checkbox"]:checked::before {
 .cssload-load {
   position: absolute;
   top: 2px;
-
   width: 60px;
   height: 60px;
 }

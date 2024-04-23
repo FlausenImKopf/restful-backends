@@ -23,8 +23,12 @@
             <label class="radio-btn done" id="done-label">
                 <input type="radio" name="filter" value="done" id="done">done
             </label>
+            <label class="radio-btn archived" id="archived-label">
+                <input type="radio" name="filter" value="archived" id="archived">archived
+            </label>
         </form>
         <div class="todo-list todo-list-all">
+            <div id="error">error-message</div>
             <ul class="todo-list-area">
                 <li>
                     <form>
@@ -57,7 +61,10 @@
                 </div>
             </form>
         </div>
-        <button class="remove-btn" id="remove-btn">remove done todos</button>
+        <div id="remove-delete-buttons">
+            <button class="archive-btn" id="archive-btn">archive done todos</button>
+            <button class="remove-btn" id="remove-btn">permanently delete</button>
+        </div>
     </main>
     <script src="script.js"></script>
 </body>
